@@ -14,6 +14,22 @@ typedef struct nd
 	struct nd *next; //node pointer
 } node;
 
+//Insert_Begin() inserts elements in the front
+void Insert_Begin(node *head, int data)
+{
+    node *new = (node *)malloc(sizeof(node));
+    if (new == NULL)
+    {
+        printf("Memory insufficient.\n");
+    }
+    else
+    {
+        new -> data = data;
+        new -> next = head;
+        head = new;
+    }
+}
+
 //Insert_End() inserts elements in the end
 void Insert_End(node *head, int data)
 {
@@ -74,9 +90,7 @@ void Insert_Before(node *head, int after, int data)
 	}
 	if (head -> data == after)
 	{
-	    new -> data = data;
-		new -> next = head;
-		head = new;
+	   Insert_Begin(head, data);
     }
 	else
 	{
@@ -241,58 +255,63 @@ void main()
 	printf("Enter first element: ");
 	scanf("%d", &data);
 	head -> data = data;
-	printf("1. Insertion at end\n2. Insert an element after a node\n3. Insert an element before anode\n4. Insert a node at a given position\n5. Delete a node with the key data value\n6. Delete a node with the given position\n7. Find minimum element\n8. Search an element\n9. Display\n");
-	while (ch < 10)
+	printf("1. Insertion at beginning\n2. Insertion at end\n3. Insert an element after a node\n4. Insert an element before anode\n5. Insert a node at a given position\n6. Delete a node with the key data value\n7. Delete a node with the given position\n8. Find minimum element\n9. Search an element\n10. Display\n");
+	while (ch < 11)
 	{
 		printf("Enter your choice: ");
 		scanf("%d", &ch);
 		switch (ch)
 		{
 			case 1: 
+			    printf("Enter the element: ");
+				scanf("%d", &data);
+				Insert_Begin(head, data);
+				break;
+			case 2:
 				printf("Enter the element: ");
 				scanf("%d", &data);
 				Insert_End(head, data);
 				break;
-			case 2: 
+			case 3: 
 				printf("Enter the BEFORE element present already in the list: ");
 				scanf("%d", &item);
 				printf("Enter the element to be inserted: ");
 				scanf("%d", &data);
 				Insert_After(head, item, data);
 				break;	
-			case 3:
+			case 4:
 				printf("Enter the AFTER element present already in the list: ");
 				scanf("%d", &item);
 				printf("Enter the element to be inserted: ");
 				scanf("%d", &data);
 		        Insert_Before(head, item, data);
 				break;
-			case 4:
+			case 5:
 			    printf("Enter the position: ");
 			    scanf("%d",&pos);
 				printf("Enter the element: ");
 				scanf("%d", &data);
 				Insert_Pos(head, pos, data);
 				break;
-			case 5:
+			case 6:
 			    printf("Enter the value to be deleted: ");
 			    scanf("%d", &item);
 			    Delete_Key(head, item);
 			    break;
-			case 6:
+			case 7:
 			    printf("Enter the position: ");
 			    scanf("%d", &pos);
 			    Delete_Pos(head, pos);
 			    break;
-			case 7:
+			case 8:
 			    Minimum(head);
 			    break;
-			case 8:
+			case 9:
 			    printf("Enter the element to be searched: ");
 			    scanf("%d", &item);
 			    Search(head, item);
 			    break;
-			case 9:
+			case 10:
 				Display(head);
 				break;
 			default:
