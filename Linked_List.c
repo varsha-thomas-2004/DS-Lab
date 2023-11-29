@@ -15,19 +15,16 @@ typedef struct nd
 } node;
 
 //Insert_Begin() inserts elements in the front
-void Insert_Begin(node *head, int data)
+void Insert_Begin(node **head, int data)
 {
     node *new = (node *)malloc(sizeof(node));
     if (new == NULL)
     {
         printf("Memory insufficient.\n");
     }
-    else
-    {
-        new -> data = data;
-        new -> next = head;
-        head = new;
-    }
+    new -> data = data;
+    new -> next = *head;
+    *head = new;
 }
 
 //Insert_End() inserts elements in the end
@@ -90,7 +87,7 @@ void Insert_Before(node *head, int after, int data)
 	}
 	if (head -> data == after)
 	{
-	   Insert_Begin(head, data);
+	   Insert_Begin(&head, data);
     }
 	else
 	{
@@ -232,7 +229,7 @@ void Display(node *head)
 	printf("Linked List:\n");
 	if (head == NULL)
 	{
-		printf("Memory insufficient.\n");
+		printf("List is empty.\n");
 	}
 	else
 	{
@@ -265,7 +262,7 @@ void main()
 			case 1: 
 			    printf("Enter the element: ");
 				scanf("%d", &data);
-				Insert_Begin(head, data);
+				Insert_Begin(&head, data);
 				break;
 			case 2:
 				printf("Enter the element: ");
