@@ -22,9 +22,12 @@ void Insert_Begin(node **head, int data)
     {
         printf("Memory insufficient.\n");
     }
-    new -> data = data;
-    new -> next = *head;
-    *head = new;
+    else
+    {
+    	new -> data = data;
+    	new -> next = *head;
+    	*head = new;
+    }
 }
 
 //Insert_End() inserts elements in the end
