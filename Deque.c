@@ -63,7 +63,7 @@ void Dequeue(int opt)
 		ptr = front;
 		front = NULL;
 		rear = NULL;
-		printf("Deleted %d.\n", ptr -> data);\
+		printf("Deleted %d.\n", ptr -> data);
 		free(ptr);
 	}
 	else
